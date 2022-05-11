@@ -1,0 +1,8 @@
+---
+- hosts: '{{servidor}}'
+  gather_facts: yes
+  vars_prompt:
+    - name: servidor
+      prompt: "Ingrese el servidor o grupo: "
+  roles:
+    - {role: jbr_actualizarSO-hadoop}

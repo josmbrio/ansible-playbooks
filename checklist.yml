@@ -1,0 +1,40 @@
+---
+- hosts: '{{servidor}}'
+  gather_facts: yes
+  vars:
+    version6: '6.10'
+    version7: '7.9'
+    version8: '8.5'
+    repositorio: 'remoto'
+  vars_prompt:
+    - name: servidor
+      prompt: "En que servidor?"
+      private: no
+      default: "localhost"
+    - name: varias
+      prompt: "Que desea realizar? \n 1.- Ejecutar una tarea del checklist \n 2.- Ejecutar varias tareas a partir de la opcion seleccionada"
+      private: no
+      default: "2"
+    - name: opcion
+      prompt: "A partir de que opcion desea retomar? \n 1.- REPOSITORIO\t(Escoger repo remoto o local) \n 2.- SERVICIOS \n 3.- COMANDOS\t\t(Instalacion de paquetes de RHEL y personalizados)\n 4.- KERNEL\t\t(Configurar grub y sysctl)\n 5.- NTP Y ZONA\t\t(Configurar ubicacion y Chrony)\n 6.- SEGURIDAD\t\t(Incrementar seguridad de cuentas y mostrar banner ssh)\n 7.- MONITOR\t\t(Configurar usuario monitor, transferir scripts y configurar crontab)\n 8.- PERSONALIZACION\t(motd, issue, bashrc, sysinfo)\n 9.- ACTUALIZAR Y REINICIAR\n"
+      private: no
+      default: "1"
+  roles:
+    - {role: checklist-repositorio,when: opcion == "1" and varias == "1"}
+    - {role: checklist-servicios,when: opcion == "2" and varias == "1"}
+    - {role: checklist-comandos,when: opcion == "3" and varias == "1"}
+    - {role: checklist-kernel,when: opcion == "4" and varias == "1"}
+    - {role: checklist-ntp-zona, when: opcion == "5" and varias == "1"}
+    - {role: checklist-seguridad, when: opcion == "6" and varias == "1"}
+    - {role: checklist-monitor, when: opcion == "7" and varias == "1"}
+    - {role: checklist-personalizacion, when: opcion == "8" and varias == "1"}
+    - {role: checklist-actualizar, when: opcion == '9' and varias == "1"}
+    - {role: checklist-repositorio,when: opcion <= "1" and varias == "2"}
+    - {role: checklist-servicios,when: opcion <= "2" and varias == "2"}
+    - {role: checklist-comandos,when: opcion <= "3" and varias == "2"}
+    - {role: checklist-kernel,when: opcion <= "4" and varias == "2"}
+    - {role: checklist-ntp-zona, when: opcion <= "5" and varias == "2"}
+    - {role: checklist-seguridad, when: opcion <= "6" and varias == "2"}
+    - {role: checklist-monitor, when: opcion <= "7" and varias == "2"}
+    - {role: checklist-personalizacion, when: opcion <= "8" and varias == "2"}
+    - {role: checklist-actualizar, when: opcion <= '9' and varias == "2"}

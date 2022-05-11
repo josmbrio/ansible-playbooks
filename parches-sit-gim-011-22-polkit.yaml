@@ -1,0 +1,15 @@
+---
+- hosts: '{{servidor}}'
+  gather_facts: yes
+  vars:
+    version6: 'RHSA-20220269-RHEL6'
+    version7: 'RHSA-20220274-RHEL7'
+    version8: 'RHSA-20220267-RHEL8'
+    repositorio: 'remoto'
+  vars_prompt:
+    - name: servidor
+      prompt: "Ingrese el servidor o grupo: "
+      private: no
+  roles:
+    - {role: SIT-GIM-011-22-polkit}
+

@@ -1,0 +1,178 @@
+---
+- hosts: localhost
+  gather_facts: yes
+
+  vars_prompt:
+    - name: datacenter
+      prompt: "\n==> INGRESAR INFORMACION DE Datacenter \n
+Posibles valores: \n
+   CENTRUM \n
+   Durán 101 \n
+   Durán 103 \n
+   Durán 105 \n
+   Esteros \n
+   Mapasingue \n
+   Santa Leonor \n
+   TEC_R1 \n
+   TEC_R2 \n
+   ETECO \n
+   INCA \n
+   UIO \n
+"
+      private: no
+    - name: hostname
+      prompt: "\n==> INGRESAR INFORMACION DE hostname "
+      private: no
+    - name: VDC
+      prompt: "\n==> INGRESAR INFORMACION DE VDC \n
+Posibles valores: \n
+  Centrum - VMwareCluster01 \n
+  Centrum - VMwareCluster-Gen09 \n
+  CLOUD - SIS_CRITICAS \n
+  CLOUD - SIS_DB \n
+  CLOUD - SIS_DESARROLLO \n
+  CLOUD - SIS_NOCRITICAS \n
+  Duran - CLARO-VSPHERE-DESA \n
+  Duran - CriticalApps \n
+  Duran - NonCriticalApps \n
+  Duran - NonCriticalDB \n
+  Duran - pgdcesxi04.porta.corp \n
+  Duran - pgdcvdesxi01.porta.corp \n
+  Duran - SOA_ONE_AMX \n
+  Duran - SOA_ONE_AMX_Desa \n
+  Duran - VMwareMgmt \n
+  Mapasingue - ClusterPureSystem \n
+"
+      private: no
+    - name: fila
+      prompt: "\n==> INGRESAR INFORMACION DE fila (para server físico)"
+      private: no
+    - name: rack
+      prompt: "\n==> INGRESAR INFORMACION DE rack (para server físico)"
+      private: no
+    - name: unidad
+      prompt: "\n==> INGRESAR INFORMACION DE unidad (para server físico)"
+      private: no
+    - name: bahia
+      prompt: "\n==> INGRESAR INFORMACION DE bahia (para server físico)"
+      private: no
+    - name: estado
+      prompt: "\n==> INGRESAR INFORMACION DE estado \n
+Posibles valores: \n
+  Encendido \n
+  Apagado \n
+  Dado_de_baja \n
+"
+      private: no
+    - name: clasificacion
+      prompt: "\n==> INGRESAR INFORMACION DE clasificacion \n
+Posibles valores: \n
+  Balanceador \n
+  Caja \n
+  Enclosure \n
+  KVM \n
+  Servidor \n
+  Servidor blade \n
+  Storage \n
+  SuperDome \n
+  VPAR \n
+  Checkpoint \n
+  SAN switch \n
+  Librería \n
+  VSP \n
+  Switch \n
+  F5 \n
+  Controladora \n
+  Consola \n
+"
+      private: no
+    - name: tipo
+      prompt: "\n==> INGRESAR INFORMACION DE tipo \n
+Posibles valores: \n
+  Fisico \n
+  Virtual \n
+"
+      private: no
+    - name: hypervisor
+      prompt: "\n==> INGRESAR INFORMACION DE hypervisor \n
+Posibles valores: \n
+  VMWare \n
+  KVM \n
+  FusionCompute \n
+"
+      private: no
+    - name: contenedor
+      prompt: "\n==> INGRESAR INFORMACION DE contenedor"
+      private: no
+    - name: sistemaOperativo
+      prompt: "\n==> INGRESAR INFORMACION DE sistemaOperativo"
+      private: no
+    - name: descripcion
+      prompt: "\n==> INGRESAR INFORMACION DE descripcion"
+      private: no
+    - name: memoriaRam
+      prompt: "\n==> INGRESAR INFORMACION DE memoriaRam"
+      private: no
+    - name: cpu
+      prompt: "\n==> INGRESAR INFORMACION DE cpu"
+      private: no
+    - name: marca
+      prompt: "\n==> INGRESAR INFORMACION DE marca \n
+Posibles valores: \n
+  Checkpoint \n
+  CISCO \n
+  DIALOGIC \n
+  EMC \n
+  F5 \n
+  HiperV \n
+  HITACHI \n
+  HP \n
+  HP  \n
+  HUAWEI \n
+  IBM \n
+  KVM \n
+  NETAPP \n
+  Oracle \n
+  SUN \n
+  VMWare \n
+  XEN \n
+"
+      private: no
+    - name: modelo
+      prompt: "\n==> INGRESAR INFORMACION DE modelo (para server físico)"
+      private: no
+    - name: numeroSerie
+      prompt: "\n==> INGRESAR INFORMACION DE numeroSerie (para server físico)"
+      private: no
+    - name: numeroParte
+      prompt: "\n==> INGRESAR INFORMACION DE numeroParte (para server físico)"
+      private: no
+    - name: Ips
+      prompt: "\n==> INGRESAR INFORMACION DE Ips"
+      private: no
+    - name: ipadm
+      prompt: "\n==> INGRESAR INFORMACION DE ipadm"
+      private: no
+
+    - name: protocolo
+      prompt: "\n==> INGRESAR INFORMACION DE PROTOCOLO DE ACCESO (para keepass) \n
+Posibles valores: \n
+  ssh \n
+  RDP \n
+"
+      private: no
+    - name: user
+      prompt: "\n==> INGRESAR INFORMACION DE Usuario administrador (para keepass) "
+      private: no
+    - name: password
+      prompt: "\n==> INGRESAR INFORMACION DE Password (para keepass) "
+      private: no
+    - name: notas
+      prompt: "\n==> INGRESAR INFORMACION DE Notas (para keepass) "
+      private: no
+
+
+
+  roles:
+    - {role: jbrtest_inventario}
+    - {role: jbrtest_keepass}

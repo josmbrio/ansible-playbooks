@@ -1,0 +1,12 @@
+---
+- hosts: '{{servidor}}'
+  gather_facts: yes
+  vars_prompt:
+    - name: servidor
+      prompt: "En que servidor?"
+      private: no
+      default: "localhost"
+  roles:
+    - {role: cortex-uninstall, tags: cortex-uninstall}
+    - {role: cortex, tags: cortex}
+
